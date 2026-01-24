@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside vs Outside Insulation - SBED Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div id="app" class="w-full max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <!-- Header with logo and name -->
+        <div class="flex items-center justify-between mb-6 pb-4 border-b-2 border-gray-200">
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold mb-1 text-gray-800">Inside vs Outside Insulation</h1>
+                <p class="text-gray-600">Why location matters: Same R-value, VERY different performance!</p>
+                <p class="text-sm text-gray-500 mt-2">Dr. Nuha AlJuneidi | Lawrence Technological University</p>
+            </div>
+            <div class="flex flex-col items-center ml-6">
+                <!-- SBED Lab Logo -->
+                <svg width="120" height="120" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="70" y="40" width="25" height="60" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="3"/>
+                    <rect x="100" y="30" width="30" height="70" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="3"/>
+                    <rect x="135" y="45" width="20" height="55" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="3"/>
+                    <rect x="75" y="45" width="5" height="7" fill="white"/>
+                    <rect x="82" y="45" width="5" height="7" fill="white"/>
+                    <rect x="75" y="55" width="5" height="7" fill="white"/>
+                    <rect x="82" y="55" width="5" height="7" fill="white"/>
+                    <rect x="75" y="65" width="5" height="7" fill="white"/>
+                    <rect x="82" y="65" width="5" height="7" fill="white"/>
+                    <rect x="105" y="38" width="5" height="7" fill="white"/>
+                    <rect x="113" y="38" width="5" height="7" fill="white"/>
+                    <rect x="121" y="38" width="5" height="7" fill="white"/>
+                    <rect x="105" y="50" width="5" height="7" fill="white"/>
+                    <rect x="113" y="50" width="5" height="7" fill="white"/>
+                    <rect x="121" y="50" width="5" height="7" fill="white"/>
+                    <rect x="105" y="62" width="5" height="7" fill="white"/>
+                    <rect x="113" y="62" width="5" height="7" fill="white"/>
+                    <rect x="121" y="62" width="5" height="7" fill="white"/>
+                    <rect x="140" y="52" width="4" height="6" fill="white"/>
+                    <rect x="146" y="52" width="4" height="6" fill="white"/>
+                    <rect x="140" y="62" width="4" height="6" fill="white"/>
+                    <rect x="146" y="62" width="4" height="6" fill="white"/>
+                    <path d="M 30 110 Q 50 100 70 110 T 110 110 Q 130 100 150 110 T 190 110" 
+                          stroke="#0ea5e9" stroke-width="3" fill="none"/>
+                    <path d="M 30 117 Q 50 107 70 117 T 110 117 Q 130 107 150 117 T 190 117" 
+                          stroke="#0ea5e9" stroke-width="2" fill="none" opacity="0.7"/>
+                    <path d="M 30 124 Q 50 114 70 124 T 110 124 Q 130 114 150 124 T 190 124" 
+                          stroke="#10b981" stroke-width="2" fill="none" opacity="0.6"/>
+                    <circle cx="25" cy="60" r="6" fill="#0ea5e9"/>
+                    <circle cx="35" cy="70" r="4" fill="#0ea5e9"/>
+                    <circle cx="40" cy="55" r="4" fill="#0ea5e9"/>
+                    <line x1="25" y1="60" x2="35" y2="70" stroke="#0ea5e9" stroke-width="2"/>
+                    <line x1="25" y1="60" x2="40" y2="55" stroke="#0ea5e9" stroke-width="2"/>
+                    <circle cx="175" cy="65" r="4" fill="#10b981"/>
+                    <circle cx="183" cy="75" r="5" fill="#10b981"/>
+                    <circle cx="168" cy="80" r="4" fill="#10b981"/>
+                    <line x1="175" y1="65" x2="183" y2="75" stroke="#10b981" stroke-width="2"/>
+                </svg>
+                <div class="text-center mt-2">
+                    <div class="text-lg font-bold text-gray-700">SBED LAB</div>
+                    <div class="text-xs text-gray-600">Smart Building Energy Dynamics</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Big Question -->
+        <div class="mb-6 p-6 bg-yellow-50 border-4 border-yellow-400 rounded-lg">
+            <h2 class="text-2xl font-bold mb-3 text-yellow-900 text-center">❓ The Question Students Always Get Wrong</h2>
+            <p class="text-lg text-center mb-2">"If both walls have R-20 total, does it matter where the insulation goes?"</p>
+            <p class="text-xl font-bold text-center text-yellow-900">Students say: "No, same R-value = same performance"</p>
+            <p class="text-xl font-bold text-center text-red-700 mt-2">WRONG! Location matters because of thermal mass!</p>
+        </div>
+
+        <!-- Wall Configurations -->
+        <div class="mb-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Wall A: Insulation Outside -->
+            <div class="border-4 border-green-500 rounded-lg p-4 bg-green-50">
+                <h3 class="text-xl font-bold text-green-800 mb-3 text-center">✓ Wall A: Insulation OUTSIDE</h3>
+                <div class="bg-white p-4 rounded border-2 border-gray-300 mb-3">
+                    <div class="text-sm font-semibold mb-2 text-center">From Outside → Inside:</div>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="text-xs text-gray-600">OUTSIDE</div>
+                        <div class="w-16 h-24 bg-pink-400 flex items-center justify-center text-xs font-bold border-2 border-pink-600">
+                            Insulation<br>R-20
+                        </div>
+                        <div class="text-2xl">→</div>
+                        <div class="w-24 h-24 bg-gray-500 flex items-center justify-center text-xs font-bold text-white border-2 border-gray-700">
+                            Concrete<br>Mass
+                        </div>
+                        <div class="text-xs text-gray-600">INSIDE</div>
+                    </div>
+                </div>
+                <div class="bg-green-100 p-3 rounded">
+                    <p class="text-sm font-semibold text-green-900">Effect:</p>
+                    <p class="text-sm">✓ Thermal mass is INSIDE insulation</p>
+                    <p class="text-sm">✓ Mass can absorb/release heat to room</p>
+                    <p class="text-sm">✓ Dampens indoor temperature swings</p>
+                    <p class="text-sm">✓ Better thermal comfort</p>
+                </div>
+            </div>
+
+            <!-- Wall B: Insulation Inside -->
+            <div class="border-4 border-red-500 rounded-lg p-4 bg-red-50">
+                <h3 class="text-xl font-bold text-red-800 mb-3 text-center">✗ Wall B: Insulation INSIDE</h3>
+                <div class="bg-white p-4 rounded border-2 border-gray-300 mb-3">
+                    <div class="text-sm font-semibold mb-2 text-center">From Outside → Inside:</div>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="text-xs text-gray-600">OUTSIDE</div>
+                        <div class="w-24 h-24 bg-gray-500 flex items-center justify-center text-xs font-bold text-white border-2 border-gray-700">
+                            Concrete<br>Mass
+                        </div>
+                        <div class="text-2xl">→</div>
+                        <div class="w-16 h-24 bg-pink-400 flex items-center justify-center text-xs font-bold border-2 border-pink-600">
+                            Insulation<br>R-20
+                        </div>
+                        <div class="text-xs text-gray-600">INSIDE</div>
+                    </div>
+                </div>
+                <div class="bg-red-100 p-3 rounded">
+                    <p class="text-sm font-semibold text-red-900">Effect:</p>
+                    <p class="text-sm">✗ Thermal mass is OUTSIDE insulation</p>
+                    <p class="text-sm">✗ Mass isolated from room</p>
+                    <p class="text-sm">✗ Can't help stabilize indoor temp</p>
+                    <p class="text-sm">✗ Indoor temp fluctuates more</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulation Controls -->
+        <div class="mb-6 p-4 bg-gray-100 rounded-lg border-2 border-gray-300">
+            <div class="flex items-center justify-between mb-3">
+                <span class="font-semibold">Time: <span id="timeDisplay">0</span> hours (Day <span id="dayDisplay">1</span>)</span>
+                <div class="flex gap-3">
+                    <button id="playBtn" onclick="togglePlay()" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-semibold">
+                        ▶ Play
+                    </button>
+                    <button onclick="resetSimulation()" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                        ↻ Reset
+                    </button>
+                </div>
+            </div>
+            <input type="range" id="timeSlider" min="0" max="168" value="0" class="w-full" oninput="updateTime()">
+            <div class="flex justify-between text-xs text-gray-600 mt-1">
+                <span>0h (Start)</span>
+                <span>168h (7 days)</span>
+            </div>
+
+            <!-- Climate Selection -->
+            <div class="mt-4">
+                <label class="block text-sm font-semibold mb-2">Climate Scenario:</label>
+                <select id="climate" class="w-full md:w-auto border rounded px-3 py-2" onchange="resetSimulation()">
+                    <option value="summer">Summer - Hot days, cool nights (35°C day, 20°C night)</option>
+                    <option value="winter">Winter - Cold constant (5°C outdoor, 20°C indoor setpoint)</option>
+                    <option value="swing">Extreme Daily Swings (40°C day, 10°C night)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Temperature Graph -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold mb-4 text-center">Indoor Temperature Over Time</h2>
+            <div class="border-2 border-gray-300 rounded-lg p-4 bg-gray-50">
+                <svg id="tempGraph" width="100%" height="400"></svg>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 bg-blue-50 border-2 border-blue-400 rounded-lg">
+                <h4 class="font-semibold text-blue-900 mb-2 text-center">Outdoor Temperature</h4>
+                <div class="text-3xl font-bold text-blue-700 text-center" id="outdoorTemp">25.0°C</div>
+            </div>
+
+            <div class="p-4 bg-green-50 border-2 border-green-400 rounded-lg">
+                <h4 class="font-semibold text-green-900 mb-2 text-center">Wall A Indoor Temp</h4>
+                <div class="text-3xl font-bold text-green-700 text-center" id="wallATemp">20.0°C</div>
+                <p class="text-xs text-center mt-1 text-gray-600">Insulation Outside (Better!)</p>
+            </div>
+
+            <div class="p-4 bg-red-50 border-2 border-red-400 rounded-lg">
+                <h4 class="font-semibold text-red-900 mb-2 text-center">Wall B Indoor Temp</h4>
+                <div class="text-3xl font-bold text-red-700 text-center" id="wallBTemp">20.0°C</div>
+                <p class="text-xs text-center mt-1 text-gray-600">Insulation Inside (Worse!)</p>
+            </div>
+        </div>
+
+        <!-- Comparison Stats -->
+        <div class="mb-6 p-6 bg-purple-50 border-4 border-purple-400 rounded-lg">
+            <h3 class="text-xl font-bold mb-4 text-center text-purple-900">📊 Performance Comparison (After 7 days)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-green-800 mb-2">✓ Wall A (Insulation Outside):</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Indoor temp range:</span>
+                            <strong id="wallARange" class="text-green-700">±1.2°C</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Peak cooling load:</span>
+                            <strong id="wallAPeak" class="text-green-700">250 W</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Total energy:</span>
+                            <strong id="wallAEnergy" class="text-green-700">45 kWh</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-red-800 mb-2">✗ Wall B (Insulation Inside):</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Indoor temp range:</span>
+                            <strong id="wallBRange" class="text-red-700">±3.5°C</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Peak cooling load:</span>
+                            <strong id="wallBPeak" class="text-red-700">580 W</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Total energy:</span>
+                            <strong id="wallBEnergy" class="text-red-700">78 kWh</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-white rounded-lg border-2 border-purple-500">
+                <p class="text-center font-bold text-purple-900">
+                    Wall A saves <span id="energySavings" class="text-2xl text-green-600">42%</span> energy!
+                </p>
+                <p class="text-center text-sm text-gray-600 mt-1">Same R-value, but insulation on OUTSIDE allows thermal mass to work!</p>
+            </div>
+        </div>
+
+        <!-- Key Takeaway -->
+        <div class="p-6 bg-gradient-to-r from-yellow-100 to-orange-100 border-4 border-orange-400 rounded-lg">
+            <h2 class="text-2xl font-bold text-center mb-4 text-orange-900">🎯 The Key Lesson</h2>
+            <div class="space-y-3 text-center">
+                <p class="text-xl font-bold">Same R-value ≠ Same Performance!</p>
+                <p class="text-lg">Location of insulation matters because of thermal mass placement</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-left">
+                    <div class="p-4 bg-green-100 rounded-lg">
+                        <p class="font-bold text-green-900 mb-2">✓ Insulation OUTSIDE (Exterior Insulation):</p>
+                        <ul class="text-sm space-y-1 list-disc ml-5">
+                            <li>Mass is inside thermal envelope</li>
+                            <li>Mass helps stabilize indoor temperature</li>
+                            <li>Reduces temperature swings</li>
+                            <li>Lower peak loads</li>
+                            <li>Better comfort</li>
+                            <li>Lower energy bills</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-red-100 rounded-lg">
+                        <p class="font-bold text-red-900 mb-2">✗ Insulation INSIDE (Interior Insulation):</p>
+                        <ul class="text-sm space-y-1 list-disc ml-5">
+                            <li>Mass is outside thermal envelope</li>
+                            <li>Mass can't interact with room</li>
+                            <li>Indoor temp fluctuates more</li>
+                            <li>Higher peak loads</li>
+                            <li>Poorer comfort</li>
+                            <li>More energy consumption</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-700 mt-4 italic">
+                    This is why continuous exterior insulation is preferred for massive walls!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTime = 0;
+        let isPlaying = false;
+        let animationInterval = null;
+        const maxTime = 168; // 7 days in hours
+
+        // Wall properties
+        const wallA_mass = 200; // kg/m² (concrete)
+        const wallB_mass = 200;
+        const cp_concrete = 880; // J/kg·K
+        const R_total = 3.52; // m²·K/W (R-20 in imperial)
+        const area = 10; // m² wall area
+
+        // Thermal capacitance (Wh/K)
+        const C_wallA = wallA_mass * area * cp_concrete / 3600; // Inside envelope - full thermal mass effect
+        const C_wallB = 20; // Outside envelope - minimal thermal mass effect (only light interior finish)
+
+        // HVAC system parameters
+        const T_setpoint = 20; // °C
+        const deadband = 0.5; // °C
+        const COP_cooling = 3.5; // Air conditioner efficiency
+        const COP_heating = 3.0; // Heat pump efficiency
+
+        // Temperature and energy arrays
+        let T_outdoor = [];
+        let T_indoor_A = [];
+        let T_indoor_B = [];
+        let heating_A = [];
+        let cooling_A = [];
+        let heating_B = [];
+        let cooling_B = [];
+
+        function getOutdoorTemp(hour) {
+            const climate = document.getElementById('climate').value;
+            
+            if (climate === 'winter') {
+                // Winter: constant cold with small daily variation
+                const hourOfDay = hour % 24;
+                return 5 + 2 * Math.sin((hourOfDay - 6) * Math.PI / 12);
+            } else if (climate === 'summer') {
+                // Summer: 35°C at 2pm, 20°C at 6am
+                const hourOfDay = hour % 24;
+                const T_avg = 27.5;
+                const T_amp = 7.5;
+                return T_avg + T_amp * Math.sin((hourOfDay - 6) * Math.PI / 12);
+            } else { // extreme swing
+                const hourOfDay = hour % 24;
+                const T_avg = 25;
+                const T_amp = 15;
+                return T_avg + T_amp * Math.sin((hourOfDay - 6) * Math.PI / 12);
+            }
+        }
+
+        function simulateWalls() {
+            T_outdoor = [];
+            T_indoor_A = [T_setpoint]; // Start at setpoint
+            T_indoor_B = [T_setpoint];
+            heating_A = [0];
+            cooling_A = [0];
+            heating_B = [0];
+            cooling_B = [0];
+
+            const dt = 1; // 1 hour time step
+            const U = 1 / R_total; // W/m²·K
+
+            let total_heating_A = 0;
+            let total_cooling_A = 0;
+            let total_heating_B = 0;
+            let total_cooling_B = 0;
+
+            for (let h = 0; h <= maxTime; h++) {
+                const T_out = getOutdoorTemp(h);
+                T_outdoor.push(T_out);
+
+                if (h > 0) {
+                    // === WALL A SIMULATION (Insulation Outside) ===
+                    // Heat flux through wall (positive = heat gain)
+                    const q_wall_A = U * area * (T_out - T_indoor_A[h-1]);
+                    
+                    // Temperature change due to wall heat flux (no HVAC yet)
+                    let T_new_A = T_indoor_A[h-1] + (q_wall_A * dt) / C_wallA;
+                    
+                    // HVAC control
+                    let q_hvac_A = 0;
+                    if (T_new_A > T_setpoint + deadband) {
+                        // Cooling needed
+                        const q_cool_needed = C_wallA * (T_new_A - T_setpoint);
+                        q_hvac_A = -q_cool_needed; // Negative = cooling
+                        T_new_A = T_setpoint;
+                        const energy_cool = q_cool_needed / COP_cooling; // Electrical energy
+                        total_cooling_A += energy_cool;
+                        cooling_A.push(total_cooling_A);
+                        heating_A.push(total_heating_A);
+                    } else if (T_new_A < T_setpoint - deadband) {
+                        // Heating needed
+                        const q_heat_needed = C_wallA * (T_setpoint - T_new_A);
+                        q_hvac_A = q_heat_needed; // Positive = heating
+                        T_new_A = T_setpoint;
+                        const energy_heat = q_heat_needed / COP_heating; // Electrical energy
+                        total_heating_A += energy_heat;
+                        heating_A.push(total_heating_A);
+                        cooling_A.push(total_cooling_A);
+                    } else {
+                        // No HVAC needed
+                        heating_A.push(total_heating_A);
+                        cooling_A.push(total_cooling_A);
+                    }
+                    
+                    T_indoor_A.push(T_new_A);
+
+                    // === WALL B SIMULATION (Insulation Inside) ===
+                    const q_wall_B = U * area * (T_out - T_indoor_B[h-1]);
+                    let T_new_B = T_indoor_B[h-1] + (q_wall_B * dt) / C_wallB;
+                    
+                    let q_hvac_B = 0;
+                    if (T_new_B > T_setpoint + deadband) {
+                        const q_cool_needed = C_wallB * (T_new_B - T_setpoint);
+                        q_hvac_B = -q_cool_needed;
+                        T_new_B = T_setpoint;
+                        const energy_cool = q_cool_needed / COP_cooling;
+                        total_cooling_B += energy_cool;
+                        cooling_B.push(total_cooling_B);
+                        heating_B.push(total_heating_B);
+                    } else if (T_new_B < T_setpoint - deadband) {
+                        const q_heat_needed = C_wallB * (T_setpoint - T_new_B);
+                        q_hvac_B = q_heat_needed;
+                        T_new_B = T_setpoint;
+                        const energy_heat = q_heat_needed / COP_heating;
+                        total_heating_B += energy_heat;
+                        heating_B.push(total_heating_B);
+                        cooling_B.push(total_cooling_B);
+                    } else {
+                        heating_B.push(total_heating_B);
+                        cooling_B.push(total_cooling_B);
+                    }
+                    
+                    T_indoor_B.push(T_new_B);
+                }
+            }
+        }
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('playBtn');
+            
+            if (isPlaying) {
+                btn.textContent = '⏸ Pause';
+                animationInterval = setInterval(() => {
+                    currentTime += 1;
+                    if (currentTime > maxTime) currentTime = maxTime;
+                    document.getElementById('timeSlider').value = currentTime;
+                    updateDisplay();
+                    if (currentTime >= maxTime) {
+                        togglePlay();
+                    }
+                }, 100);
+            } else {
+                btn.textContent = '▶ Play';
+                clearInterval(animationInterval);
+            }
+        }
+
+        function resetSimulation() {
+            currentTime = 0;
+            isPlaying = false;
+            document.getElementById('playBtn').textContent = '▶ Play';
+            document.getElementById('timeSlider').value = 0;
+            clearInterval(animationInterval);
+            simulateWalls();
+            updateDisplay();
+            updateStats();
+        }
+
+        function updateTime() {
+            const slider = document.getElementById('timeSlider');
+            currentTime = parseInt(slider.value);
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const hour = Math.floor(currentTime);
+            const day = Math.floor(currentTime / 24) + 1;
+            
+            document.getElementById('timeDisplay').textContent = hour;
+            document.getElementById('dayDisplay').textContent = day;
+            
+            document.getElementById('outdoorTemp').textContent = T_outdoor[hour].toFixed(1) + '°C';
+            document.getElementById('wallATemp').textContent = T_indoor_A[hour].toFixed(1) + '°C';
+            document.getElementById('wallBTemp').textContent = T_indoor_B[hour].toFixed(1) + '°C';
+
+            drawGraph();
+        }
+
+        function updateStats() {
+            const hour = Math.floor(currentTime);
+            
+            // Get final values
+            const total_heating_A = heating_A[heating_A.length - 1];
+            const total_cooling_A = cooling_A[cooling_A.length - 1];
+            const total_heating_B = heating_B[heating_B.length - 1];
+            const total_cooling_B = cooling_B[cooling_B.length - 1];
+
+            const total_energy_A = total_heating_A + total_cooling_A;
+            const total_energy_B = total_heating_B + total_cooling_B;
+
+            // Temperature ranges (when HVAC is off, temp can drift within deadband)
+            const T_A_min = Math.min(...T_indoor_A);
+            const T_A_max = Math.max(...T_indoor_A);
+            const T_B_min = Math.min(...T_indoor_B);
+            const T_B_max = Math.max(...T_indoor_B);
+
+            const range_A = (T_A_max - T_A_min) / 2;
+            const range_B = (T_B_max - T_B_min) / 2;
+
+            document.getElementById('wallARange').textContent = '±' + range_A.toFixed(1) + '°C';
+            document.getElementById('wallBRange').textContent = '±' + range_B.toFixed(1) + '°C';
+
+            // Peak loads (max hourly energy use)
+            let peak_A = 0, peak_B = 0;
+            for (let h = 1; h < heating_A.length; h++) {
+                const hourly_A = (heating_A[h] - heating_A[h-1]) + (cooling_A[h] - cooling_A[h-1]);
+                const hourly_B = (heating_B[h] - heating_B[h-1]) + (cooling_B[h] - cooling_B[h-1]);
+                if (hourly_A > peak_A) peak_A = hourly_A;
+                if (hourly_B > peak_B) peak_B = hourly_B;
+            }
+
+            // Convert to power (Wh over 1 hour = W)
+            document.getElementById('wallAPeak').textContent = Math.round(peak_A) + ' W';
+            document.getElementById('wallBPeak').textContent = Math.round(peak_B) + ' W';
+
+            // Total energy
+            document.getElementById('wallAEnergy').textContent = total_energy_A.toFixed(1) + ' kWh';
+            document.getElementById('wallBEnergy').textContent = total_energy_B.toFixed(1) + ' kWh';
+
+            // Savings
+            if (total_energy_B > 0) {
+                const savings = ((total_energy_B - total_energy_A) / total_energy_B * 100);
+                document.getElementById('energySavings').textContent = savings.toFixed(0) + '%';
+            } else {
+                document.getElementById('energySavings').textContent = 'N/A';
+            }
+        }
+
+        function drawGraph() {
+            const svg = document.getElementById('tempGraph');
+            const width = svg.clientWidth || 700;
+            const height = 400;
+            svg.innerHTML = '';
+            svg.setAttribute('width', width);
+            svg.setAttribute('height', height);
+
+            const margin = {top: 30, right: 30, bottom: 50, left: 60};
+            const plotWidth = width - margin.left - margin.right;
+            const plotHeight = height - margin.top - margin.bottom;
+
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttribute('transform', `translate(${margin.left},${margin.top})`);
+
+            // Find temp range
+            const allTemps = [...T_outdoor, ...T_indoor_A, ...T_indoor_B];
+            const T_min = Math.min(...allTemps) - 2;
+            const T_max = Math.max(...allTemps) + 2;
+
+            // Draw axes
+            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            yAxis.setAttribute('x1', 0);
+            yAxis.setAttribute('y1', 0);
+            yAxis.setAttribute('x2', 0);
+            yAxis.setAttribute('y2', plotHeight);
+            yAxis.setAttribute('stroke', 'black');
+            yAxis.setAttribute('stroke-width', '2');
+            g.appendChild(yAxis);
+
+            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            xAxis.setAttribute('x1', 0);
+            xAxis.setAttribute('y1', plotHeight);
+            xAxis.setAttribute('x2', plotWidth);
+            xAxis.setAttribute('y2', plotHeight);
+            xAxis.setAttribute('stroke', 'black');
+            xAxis.setAttribute('stroke-width', '2');
+            g.appendChild(xAxis);
+
+            // Helper function to convert data to screen coords
+            function toScreen(hour, temp) {
+                const x = (hour / maxTime) * plotWidth;
+                const y = plotHeight - ((temp - T_min) / (T_max - T_min)) * plotHeight;
+                return {x, y};
+            }
+
+            // Draw outdoor temp (blue)
+            const outdoorPoints = T_outdoor.slice(0, currentTime + 1).map((t, h) => {
+                const {x, y} = toScreen(h, t);
+                return `${x},${y}`;
+            }).join(' ');
+
+            if (outdoorPoints) {
+                const outdoorPath = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                outdoorPath.setAttribute('points', outdoorPoints);
+                outdoorPath.setAttribute('fill', 'none');
+                outdoorPath.setAttribute('stroke', '#3b82f6');
+                outdoorPath.setAttribute('stroke-width', '2');
+                outdoorPath.setAttribute('stroke-dasharray', '5,5');
+                g.appendChild(outdoorPath);
+            }
+
+            // Draw Wall A (green)
+            const wallAPoints = T_indoor_A.slice(0, currentTime + 1).map((t, h) => {
+                const {x, y} = toScreen(h, t);
+                return `${x},${y}`;
+            }).join(' ');
+
+            if (wallAPoints) {
+                const wallAPath = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                wallAPath.setAttribute('points', wallAPoints);
+                wallAPath.setAttribute('fill', 'none');
+                wallAPath.setAttribute('stroke', '#16a34a');
+                wallAPath.setAttribute('stroke-width', '3');
+                g.appendChild(wallAPath);
+            }
+
+            // Draw Wall B (red)
+            const wallBPoints = T_indoor_B.slice(0, currentTime + 1).map((t, h) => {
+                const {x, y} = toScreen(h, t);
+                return `${x},${y}`;
+            }).join(' ');
+
+            if (wallBPoints) {
+                const wallBPath = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                wallBPath.setAttribute('points', wallBPoints);
+                wallBPath.setAttribute('fill', 'none');
+                wallBPath.setAttribute('stroke', '#dc2626');
+                wallBPath.setAttribute('stroke-width', '3');
+                g.appendChild(wallBPath);
+            }
+
+            // Legend
+            const legendData = [
+                { color: '#3b82f6', label: 'Outdoor Temp', dash: true },
+                { color: '#16a34a', label: 'Wall A (Insulation Outside)', dash: false },
+                { color: '#dc2626', label: 'Wall B (Insulation Inside)', dash: false }
+            ];
+
+            legendData.forEach((item, idx) => {
+                const legendY = 20 + idx * 25;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', plotWidth - 250);
+                line.setAttribute('y1', legendY);
+                line.setAttribute('x2', plotWidth - 220);
+                line.setAttribute('y2', legendY);
+                line.setAttribute('stroke', item.color);
+                line.setAttribute('stroke-width', '3');
+                if (item.dash) line.setAttribute('stroke-dasharray', '5,5');
+                g.appendChild(line);
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', plotWidth - 215);
+                text.setAttribute('y', legendY + 4);
+                text.setAttribute('font-size', '12');
+                text.textContent = item.label;
+                g.appendChild(text);
+            });
+
+            // Axis labels
+            const xLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            xLabel.setAttribute('x', plotWidth / 2);
+            xLabel.setAttribute('y', plotHeight + 40);
+            xLabel.setAttribute('text-anchor', 'middle');
+            xLabel.setAttribute('font-size', '14');
+            xLabel.setAttribute('font-weight', 'bold');
+            xLabel.textContent = 'Time (hours)';
+            g.appendChild(xLabel);
+
+            const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            yLabel.setAttribute('transform', `translate(-45, ${plotHeight/2}) rotate(-90)`);
+            yLabel.setAttribute('text-anchor', 'middle');
+            yLabel.setAttribute('font-size', '14');
+            yLabel.setAttribute('font-weight', 'bold');
+            yLabel.textContent = 'Temperature (°C)';
+            g.appendChild(yLabel);
+
+            // Y-axis ticks
+            const numYTicks = 5;
+            for (let i = 0; i <= numYTicks; i++) {
+                const temp = T_min + (T_max - T_min) * i / numYTicks;
+                const {x, y} = toScreen(0, temp);
+                
+                const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                tick.setAttribute('x1', -5);
+                tick.setAttribute('y1', y);
+                tick.setAttribute('x2', 0);
+                tick.setAttribute('y2', y);
+                tick.setAttribute('stroke', 'black');
+                tick.setAttribute('stroke-width', '2');
+                g.appendChild(tick);
+
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', -10);
+                label.setAttribute('y', y + 4);
+                label.setAttribute('text-anchor', 'end');
+                label.setAttribute('font-size', '11');
+                label.textContent = temp.toFixed(0);
+                g.appendChild(label);
+            }
+
+            // X-axis ticks
+            const numXTicks = 7;
+            for (let i = 0; i <= numXTicks; i++) {
+                const hour = maxTime * i / numXTicks;
+                const {x, y} = toScreen(hour, T_min);
+                
+                const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                tick.setAttribute('x1', x);
+                tick.setAttribute('y1', plotHeight);
+                tick.setAttribute('x2', x);
+                tick.setAttribute('y2', plotHeight + 5);
+                tick.setAttribute('stroke', 'black');
+                tick.setAttribute('stroke-width', '2');
+                g.appendChild(tick);
+
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', x);
+                label.setAttribute('y', plotHeight + 20);
+                label.setAttribute('text-anchor', 'middle');
+                label.setAttribute('font-size', '11');
+                label.textContent = Math.round(hour);
+                g.appendChild(label);
+            }
+
+            svg.appendChild(g);
+        }
+
+        // Initialize
+        window.onload = () => {
+            simulateWalls();
+            updateDisplay();
+            updateStats();
+        };
+    </script>
+</body>
+</html>
